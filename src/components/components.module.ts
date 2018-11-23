@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MenuComponent } from './menuComponent/menu.component';
 
 import {InputTextModule, DataTableModule, ButtonModule, DialogModule, CheckboxModule, DataListModule, MenubarModule, MenuModule} from 'primeng/primeng';
+import { DataServicesModule } from '../dataServices/dataServices.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,8 @@ import {InputTextModule, DataTableModule, ButtonModule, DialogModule, CheckboxMo
       // PrimeNG
       InputTextModule, DataTableModule, ButtonModule, DialogModule,
       CheckboxModule, DataListModule, MenubarModule, MenuModule,
+
+      DataServicesModule
   ],
   exports: [ MenuComponent ],
   providers: []

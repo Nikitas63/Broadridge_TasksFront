@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
+import { TasksService } from '../../dataServices/services/tasksService';
+import { Tasks } from '../../dataServices/clientModels/tasks';
 
 @Component({
   selector: 'broad-menu-component',
@@ -8,13 +10,23 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-  items: MenuItem[];
+
+  constructor(private _tasksService: TasksService) {
+  }
+
+
+  protected items: MenuItem[];
+  protected tasks: Tasks;
 
   ngOnInit() {
       this.items = [
-          {label: 'New', icon: 'pi pi-fw pi-plus'},
-          {label: 'Open', icon: 'pi pi-fw pi-download'},
-          {label: 'Undo', icon: 'pi pi-fw pi-refresh'}
+          {label: 'Add task form'},
+          {label: 'Tasks list'}
       ];
+
+      this._tasksService.getTasks()
+        .subscribe(tasks => {
+          this.tasks = tasks;
+      });
   }
 }
