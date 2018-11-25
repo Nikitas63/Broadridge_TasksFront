@@ -63,3 +63,8 @@ nav a.active {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Fixes for primeng styles */
+.ui-paginator-page {
+  width: 3.25em !important;
+}

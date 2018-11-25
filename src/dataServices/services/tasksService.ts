@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,8 +14,17 @@ import { Task } from '../clientModels/task';
 export class TasksService {
     constructor(private _httpClient: HttpClient) { }
 
-    public getTasks(): Observable<TasksSource> {
-        return this._httpClient.get<TasksModel>('http://localhost:5055/api/tasks')
+    public getTasks(pageNumber?: number, pageSize?: number): Observable<TasksSource> {
+
+        var page = pageNumber ? pageNumber : 1;
+        var size = pageSize ? pageSize : 25;
+
+        // TODO: use params like this (not worked for now)
+        /*var params = new HttpParams();
+        params.append('page', page.toString());
+        params.append('size', size.toString());*/
+
+        return this._httpClient.get<TasksModel>(`http://localhost:5055/api/tasks?page=${page}&size=${size}`)
             .pipe(map(res => {
                 var tasks = res.data.map(t => new Task(
                     t.id,
@@ -23,10 +32,9 @@ export class TasksService {
                     new Date(t.updatedDate),
                     t.name,
                     t.description,
-                    t.prioriry,
+                    t.priority,
                     t.timeToComplete,
-                    t.status,
-                    t.isDeleted
+                    t.status
                 ));
 
                 return new TasksSource(

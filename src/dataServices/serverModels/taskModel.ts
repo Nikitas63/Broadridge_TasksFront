@@ -5,9 +5,8 @@ export class TaskModel {
         public updatedDate: string,
         public name: string,
         public description: string,
-        public prioriry: number,
+        public priority: number,
         public timeToComplete: number,
-        public status: number,
-        public isDeleted: boolean
+        public status: number
     ) { }
 }

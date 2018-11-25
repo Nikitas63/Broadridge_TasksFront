@@ -5,9 +5,8 @@ export class Task {
         public UpdatedDate: Date,
         public Name: string,
         public Description: string,
-        public Prioriry: number,
+        public Priority: number,
         public TimeToComplete: number,
-        public Status: number,
-        public IsDeleted: boolean
+        public Status: number
     ) { }
 }
