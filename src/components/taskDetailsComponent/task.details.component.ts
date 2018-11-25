@@ -12,12 +12,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TaskDetailsComponent {
 
   private _sub: any;
-
-  public taskId: string;
+  protected loadSingleTask: boolean;
 
   @Input()
   public set task(value: Task) {
     this.loadedTask = value;
+    this.loadSingleTask = false;
   }
 
   protected loadedTask: Task;
@@ -30,7 +30,10 @@ export class TaskDetailsComponent {
     this._sub = this._route.params.subscribe(params => {
       if (this._tasksService && params && params.taskId) {
         this._tasksService.getTask(params.taskId)
-          .subscribe(task => this.loadedTask = task);
+          .subscribe(task => {
+            this.loadedTask = task;
+            this.loadSingleTask = true;
+          });
       }
     });
   }

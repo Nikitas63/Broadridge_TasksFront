@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menuComponent/menu.component';
 
 import {InputTextModule, DataTableModule, ButtonModule, DialogModule, CheckboxModule, DataListModule, MenubarModule, MenuModule,
-  InputTextareaModule, PanelModule, DropdownModule} from 'primeng/primeng';
+  InputTextareaModule, PanelModule, DropdownModule, FieldsetModule} from 'primeng/primeng';
 import { DataServicesModule } from '../dataServices/dataServices.module';
 import { TasksComponent } from './tasksComponent/tasks.component';
 import { TaskDetailsComponent } from './taskDetailsComponent/task.details.component';
@@ -21,7 +21,7 @@ import { MainTasksComponent } from './mainTasksComponent/main.tasks.component';
       CommonModule,
 
       // PrimeNG
-      InputTextModule, DataTableModule, ButtonModule, DialogModule,
+      InputTextModule, DataTableModule, ButtonModule, DialogModule, FieldsetModule,
       CheckboxModule, DataListModule, MenubarModule, MenuModule, InputTextareaModule, PanelModule, DropdownModule,
 
       DataServicesModule

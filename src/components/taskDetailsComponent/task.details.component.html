@@ -1,6 +1,19 @@
-<div>
-    Task Id: {{loadedTask?.Id}}
-    Task name: {{loadedTask?.Name}}
-    <button (click)="navigate()" class="btn edit btn-primary">Navigate to task</button>
-</div>
+<a *ngIf="loadSingleTask" routerLink="/tasks">Home</a> 
+<br/>
+
+<p-fieldset legend="Task details">
+
+    <span>Id: {{loadedTask?.Id}}</span>
+    <br/>
+    <span>Name: {{loadedTask?.Name}}</span>
+    <br/>
+    <span>Description: {{loadedTask?.Description}}</span>
+    <br/>
+    <span>Status: {{loadedTask?.Status == 1 ? 'Active' : 'Inactive'}}</span>
+    <br/>
+    <span>Added: {{ loadedTask?.CreatedDate | date:'medium' }}</span>
+    
+    <br/>
+    <button *ngIf="!loadSingleTask" (click)="navigate()" class="btn edit btn-primary">Navigate to task</button>
+</p-fieldset>
 
