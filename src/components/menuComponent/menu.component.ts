@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
 import { TasksService } from '../../dataServices/services/tasksService';
-import { Tasks } from '../../dataServices/clientModels/tasks';
 
 @Component({
   selector: 'broad-menu-component',
@@ -16,7 +15,6 @@ export class MenuComponent {
 
 
   protected items: MenuItem[];
-  protected tasks: Tasks;
 
   ngOnInit() {
       this.items = [
@@ -24,9 +22,5 @@ export class MenuComponent {
           {label: 'Tasks list'}
       ];
 
-      this._tasksService.getTasks()
-        .subscribe(tasks => {
-          this.tasks = tasks;
-      });
   }
 }

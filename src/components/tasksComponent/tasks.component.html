@@ -1,0 +1,8 @@
+<p-dataTable [value]="tasks" [lazy]="true" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]"
+            [totalRecords]="totalRecords" (onLazyLoad)="loadTasksLazy($event)">
+
+    <p-header>Tasks list</p-header>
+    <p-column field="Name" header="Name"></p-column>
+    <p-column field="Priority" header="Priority"></p-column>
+
+</p-dataTable>

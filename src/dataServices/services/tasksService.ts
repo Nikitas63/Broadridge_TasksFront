@@ -7,14 +7,14 @@ import { map } from 'rxjs/operators';
 import { TaskModel } from '../serverModels/taskModel';
 import { PaginationContext } from '../serverModels/paginationContext';
 import { TasksModel } from '../serverModels/tasksModel';
-import { Tasks } from '../clientModels/tasks';
+import { TasksSource } from '../clientModels/tasksSource';
 import { Task } from '../clientModels/task';
 
 @Injectable()
 export class TasksService {
     constructor(private _httpClient: HttpClient) { }
 
-    public getTasks(): Observable<Tasks> {
+    public getTasks(): Observable<TasksSource> {
         return this._httpClient.get<TasksModel>('http://localhost:5055/api/tasks')
             .pipe(map(res => {
                 var tasks = res.data.map(t => new Task(
@@ -29,7 +29,7 @@ export class TasksService {
                     t.isDeleted
                 ));
 
-                return new Tasks(
+                return new TasksSource(
                     tasks,
                     res.paginationContext
                 );
