@@ -1,0 +1,15 @@
+.broad-menu {
+  display:inline-block;
+  vertical-align:top;
+  width: 13%;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+.broad-main {
+  display:inline-block;
+  vertical-align:top;
+  width: 80%;
+  padding: 0.5em;
+  margin: 0.5em;
+}

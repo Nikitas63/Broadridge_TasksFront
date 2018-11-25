@@ -8,12 +8,14 @@ import {InputTextModule, DataTableModule, ButtonModule, DialogModule, CheckboxMo
 import { DataServicesModule } from '../dataServices/dataServices.module';
 import { TasksComponent } from './tasksComponent/tasks.component';
 import { TaskDetailsComponent } from './taskDetailsComponent/task.details.component';
+import { MainTasksComponent } from './mainTasksComponent/main.tasks.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
     TasksComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    MainTasksComponent
   ],
   imports: [
       CommonModule,
@@ -24,7 +26,7 @@ import { TaskDetailsComponent } from './taskDetailsComponent/task.details.compon
 
       DataServicesModule
   ],
-  exports: [ MenuComponent, TasksComponent, TaskDetailsComponent ],
+  exports: [ MenuComponent, TasksComponent, TaskDetailsComponent, MainTasksComponent ],
   providers: []
 })
 export class ComponentsModule { }

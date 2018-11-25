@@ -20,23 +20,18 @@ export class TaskDetailsComponent {
     this.loadedTask = value;
   }
 
- /* @Input()
-  public set taskId(value: string) {
-    if (this._tasksService) {
-      this._tasksService.getTask(value)
-        .subscribe(task => this.loadedTask = task);
-    }
-  }*/
-
   protected loadedTask: Task;
 
   constructor(private _tasksService: TasksService,
-              private _router: Router,
-              private _route: ActivatedRoute) { }
+              private _route: ActivatedRoute,
+              private _router: Router) { }
 
   public ngOnInit() {
     this._sub = this._route.params.subscribe(params => {
-      console.log(params);
+      if (this._tasksService && params && params.taskId) {
+        this._tasksService.getTask(params.taskId)
+          .subscribe(task => this.loadedTask = task);
+      }
     });
   }
 
@@ -45,7 +40,6 @@ export class TaskDetailsComponent {
   }
 
   protected navigate() {
-    return this._router.navigate([`/tasks${this.loadedTask.Id}`]);
+    return this._router.navigate([`/tasks/${this.loadedTask.Id}`]);
   }
-
 }

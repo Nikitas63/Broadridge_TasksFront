@@ -45,7 +45,7 @@ export class TasksService {
     }
 
     public getTask(id: string): Observable<Task> {
-        return this._httpClient.get<TaskModel>(`${API_URL}/api/tasks?id=${id}`)
+        return this._httpClient.get<TaskModel>(`${API_URL}/api/tasks/${id}`)
             .pipe(map(task => {
                 return new Task(
                     task.id,
