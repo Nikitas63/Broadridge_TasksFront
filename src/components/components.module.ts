@@ -7,11 +7,13 @@ import {InputTextModule, DataTableModule, ButtonModule, DialogModule, CheckboxMo
   InputTextareaModule, PanelModule, DropdownModule} from 'primeng/primeng';
 import { DataServicesModule } from '../dataServices/dataServices.module';
 import { TasksComponent } from './tasksComponent/tasks.component';
+import { TaskDetailsComponent } from './taskDetailsComponent/task.details.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
-    TasksComponent
+    TasksComponent,
+    TaskDetailsComponent
   ],
   imports: [
       CommonModule,
@@ -22,7 +24,7 @@ import { TasksComponent } from './tasksComponent/tasks.component';
 
       DataServicesModule
   ],
-  exports: [ MenuComponent, TasksComponent ],
+  exports: [ MenuComponent, TasksComponent, TaskDetailsComponent ],
   providers: []
 })
 export class ComponentsModule { }

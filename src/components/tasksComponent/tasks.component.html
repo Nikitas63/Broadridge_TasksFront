@@ -1,5 +1,6 @@
 <p-dataTable [value]="tasks" [lazy]="true" [rows]="rowsNumber" [paginator]="true" [rowsPerPageOptions]="availablePageSizes"
-            [totalRecords]="totalRecords" (onLazyLoad)="loadTasksLazy($event)">
+            [totalRecords]="totalRecords" (onLazyLoad)="loadTasksLazy($event)"
+            selectionMode="single" (onRowSelect)="onTaskSelect($event)" dataKey="Id">
 
     <p-header>Tasks list</p-header>
     <p-column field="Name" header="Name"></p-column>
@@ -21,3 +22,7 @@
     </p-column>
 
 </p-dataTable>
+
+<div *ngIf="selectedTask">
+    <broad-task-details-component [task]="selectedTask"></broad-task-details-component>
+</div>

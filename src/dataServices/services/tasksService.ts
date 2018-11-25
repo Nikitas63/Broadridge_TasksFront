@@ -44,6 +44,22 @@ export class TasksService {
             }));
     }
 
+    public getTask(id: string): Observable<Task> {
+        return this._httpClient.get<TaskModel>(`${API_URL}/api/tasks?id=${id}`)
+            .pipe(map(task => {
+                return new Task(
+                    task.id,
+                    new Date(task.createdDate),
+                    new Date(task.updatedDate),
+                    task.name,
+                    task.description,
+                    task.priority,
+                    task.timeToComplete,
+                    task.status
+                );
+            }));
+    }
+
     public completeTask(id: string): Observable<boolean> {       
         return this._httpClient.put<TaskModel>(`${API_URL}/api/tasks/${id}?status=${TaskModelStatus.Completed}`, null)
             .pipe(map(res => res.status === TaskModelStatus.Completed));

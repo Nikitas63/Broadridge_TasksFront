@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { TasksService } from '../../dataServices/services/tasksService';
-import { TasksSource } from '../../dataServices/clientModels/tasksSource';
 import { Task, TaskModelStatus } from '../../dataServices/clientModels/task';
 import { LazyLoadEvent } from 'primeng/api';
 
@@ -25,12 +24,24 @@ export class TasksComponent {
 
   protected rowsNumber: number;
 
+  protected selectedTask: Task;
+
+  public ngOnInit() {
+    this.getTasks(1, this.availablePageSizes[0]);
+  }
+
   protected loadTasksLazy(event: LazyLoadEvent) {
     this.rowsNumber = event.rows;
 
     var pageNumber = event.first / event.rows + 1;
 
     this.getTasks(pageNumber, event.rows);
+  }
+
+  protected onTaskSelect(event: any) {
+    if (event) {
+      this.selectedTask = event.data;
+    }
   }
 
   protected completeTask(id: string) {
@@ -48,10 +59,6 @@ export class TasksComponent {
       .subscribe(() => {
         this.getTasks();
       });
-  }
-
-  public ngOnInit() {
-      this.getTasks(1, this.availablePageSizes[0]);
   }
 
   private getTasks(page?: number, size?: number) {
