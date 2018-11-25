@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { MenuComponent } from './menuComponent/menu.component';
 
@@ -13,6 +14,8 @@ import { TasksComponent } from './tasksComponent/tasks.component';
     TasksComponent
   ],
   imports: [
+      CommonModule,
+
       // PrimeNG
       InputTextModule, DataTableModule, ButtonModule, DialogModule,
       CheckboxModule, DataListModule, MenubarModule, MenuModule, InputTextareaModule, PanelModule, DropdownModule,

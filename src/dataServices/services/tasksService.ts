@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { TaskModel } from '../serverModels/taskModel';
-import { PaginationContext } from '../serverModels/paginationContext';
 import { TasksModel } from '../serverModels/tasksModel';
 import { TasksSource } from '../clientModels/tasksSource';
-import { Task } from '../clientModels/task';
+import { Task, TaskModelStatus } from '../clientModels/task';
+
+const API_URL = 'http://localhost:5055';
 
 @Injectable()
 export class TasksService {
     constructor(private _httpClient: HttpClient) { }
 
     public getTasks(pageNumber?: number, pageSize?: number): Observable<TasksSource> {
-
         var page = pageNumber ? pageNumber : 1;
         var size = pageSize ? pageSize : 25;
 
@@ -24,7 +24,7 @@ export class TasksService {
         params.append('page', page.toString());
         params.append('size', size.toString());*/
 
-        return this._httpClient.get<TasksModel>(`http://localhost:5055/api/tasks?page=${page}&size=${size}`)
+        return this._httpClient.get<TasksModel>(`${API_URL}/api/tasks?page=${page}&size=${size}`)
             .pipe(map(res => {
                 var tasks = res.data.map(t => new Task(
                     t.id,
@@ -42,5 +42,14 @@ export class TasksService {
                     res.paginationContext
                 );
             }));
+    }
+
+    public completeTask(id: string): Observable<boolean> {       
+        return this._httpClient.put<TaskModel>(`${API_URL}/api/tasks/${id}?status=${TaskModelStatus.Completed}`, null)
+            .pipe(map(res => res.status === TaskModelStatus.Completed));
+    }
+
+    public deleteTask(id: string): Observable<any> {
+        return this._httpClient.delete(`${API_URL}/api/tasks/${id}`);
     }
 }

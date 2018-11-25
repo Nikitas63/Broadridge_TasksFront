@@ -7,6 +7,16 @@ export class Task {
         public Description: string,
         public Priority: number,
         public TimeToComplete: number,
-        public Status: number
+        public Status: TaskModelStatus
     ) { }
+
+    public get isCompleted(): boolean
+    {
+        return this.Status == TaskModelStatus.Completed;
+    }
+}
+
+export enum TaskModelStatus {
+    Active = 1,
+    Completed = 2
 }
