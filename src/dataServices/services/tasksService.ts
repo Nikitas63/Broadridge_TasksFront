@@ -70,6 +70,22 @@ export class TasksService {
         return this._httpClient.delete(`${API_URL}/api/tasks/${id}`);
     }
 
+    public createTask(task: Task): Observable<Task> {
+        return this._httpClient.post<TaskModel>(`${API_URL}/api/tasks?name=${task.Name}&description=${task.Description}&priority=${task.Priority}&timeToComplete=${task.TimeToComplete}`, null)
+        .pipe(map(task => {
+            return new Task(
+                task.id,
+                new Date(task.createdDate),
+                new Date(task.updatedDate),
+                task.name,
+                task.description,
+                task.priority,
+                task.timeToComplete,
+                task.status
+            );
+        }));
+    }
+
     private filterToString(filter: TasksFilter) {
         switch (filter) {
             case TasksFilter.All:

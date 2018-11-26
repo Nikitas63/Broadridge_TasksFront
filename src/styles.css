@@ -68,3 +68,7 @@ nav a.active {
 .ui-paginator-page {
   width: 3.25em !important;
 }
+
+.ui-inputgroup-addon {
+  min-width: 7em !important;
+}
