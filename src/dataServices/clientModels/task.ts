@@ -10,8 +10,7 @@ export class Task {
         public Status: TaskModelStatus
     ) { }
 
-    public get isCompleted(): boolean
-    {
+    public get isCompleted(): boolean {
         return this.Status == TaskModelStatus.Completed;
     }
 }

@@ -1,6 +1,7 @@
 <div class="broad-menu">
-    <broad-menu-component></broad-menu-component>
+    <broad-menu-component (activeMenu)="activateMenu($event)"></broad-menu-component>
 </div>
 <div class="broad-main">
-    <broad-tasks-component></broad-tasks-component>
+    <broad-tasks-component *ngIf="isTasksMenuActive"></broad-tasks-component>
+    <broad-create-task-component *ngIf="!isTasksMenuActive"></broad-create-task-component>
 </div>

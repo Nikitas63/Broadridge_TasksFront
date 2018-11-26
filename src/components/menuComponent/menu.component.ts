@@ -1,7 +1,8 @@
-import { Component, Output } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
 import { TasksService } from '../../dataServices/services/tasksService';
+import { MenuItemEnum } from './menuItemEnum';
 
 @Component({
   selector: 'broad-menu-component',
@@ -13,15 +14,15 @@ export class MenuComponent {
   constructor(private _tasksService: TasksService) {
   }
 
-  //@Output()
-  public itemClicked: boolean;
+  @Output()
+  public activeMenu: EventEmitter<MenuItemEnum> = new EventEmitter<MenuItemEnum>();
 
   protected items: MenuItem[];
 
   ngOnInit() {
       this.items = [
-          {label: 'Add task form', command: (onclick)=> {this.itemClicked = true;}},
-          {label: 'Tasks list' , command: (onclick)=> {this.itemClicked = false;}}
+          {label: 'Tasks list' , command: (onclick)=> {this.activeMenu.emit(MenuItemEnum.Tasks);}},
+          {label: 'Add task form', command: (onclick)=> {this.activeMenu.emit(MenuItemEnum.CreateTask);}}
       ];
   }
 }
