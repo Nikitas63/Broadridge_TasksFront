@@ -68,6 +68,10 @@ export class TasksComponent {
       });
   }
 
+  public refreshTasks() {
+    this.getTasks();
+  }
+
   private getTasks(page?: number, size?: number, filter?: TasksFilter) {
     if (!page) {
       page = this._currentPage;

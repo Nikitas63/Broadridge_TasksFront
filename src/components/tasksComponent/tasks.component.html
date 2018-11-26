@@ -1,13 +1,19 @@
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-secondary" [class.active]="taskFilter == 1"> 
-          <input type="radio" name="options" id="option1" autocomplete="off" (click)="filterTasks(1)"> All
-        </label>
-        <label class="btn btn-secondary" [class.active]="taskFilter == 2">
-          <input type="radio" name="options" id="option2" autocomplete="off" (click)="filterTasks(2)"> Active
-        </label>
-        <label class="btn btn-secondary" [class.active]="taskFilter == 3">
-          <input type="radio" name="options" id="option3" autocomplete="off" (click)="filterTasks(3)"> Completed
-        </label>
+<div class="btn-group btn-group-toggle broad-top-buttons" data-toggle="buttons">
+    <label class="btn btn-secondary" [class.active]="taskFilter == 1"> 
+        <input type="radio" name="options" id="option1" autocomplete="off" (click)="filterTasks(1)"> All
+    </label>
+    <label class="btn btn-secondary" [class.active]="taskFilter == 2">
+        <input type="radio" name="options" id="option2" autocomplete="off" (click)="filterTasks(2)"> Active
+    </label>
+    <label class="btn btn-secondary" [class.active]="taskFilter == 3">
+        <input type="radio" name="options" id="option3" autocomplete="off" (click)="filterTasks(3)"> Completed
+    </label>
+</div>
+
+<div class="broad-top-buttons-refresh" style="float: right;">
+    <button type="button" class="btn btn-labeled btn-info" (click)="refreshTasks()">
+        <span class="btn-label"><i class="fa fa-retweet"></i></span>Refresh
+    </button>
 </div>
 
 <p-dataTable [value]="tasks" [lazy]="true" [rows]="rowsNumber" [paginator]="true" [rowsPerPageOptions]="availablePageSizes"
@@ -28,8 +34,12 @@
 
     <p-column header="Actions">
         <ng-template let-task="rowData" pTemplate type="body">
-            <button *ngIf="!task.isCompleted" style="width: 100%" (click)="completeTask(task.Id)" class="btn save btn-success">Complete</button>
-            <button *ngIf="task.isCompleted" style="width: 100%" (click)="deleteTask(task.Id)" class="btn edit btn-danger">Remove</button>
+            <button *ngIf="!task.isCompleted" style="width: 100%" (click)="completeTask(task.Id)" class="btn btn-success">
+                <span class="btn-label"><i class="fa fa-check"></i></span>Complete
+            </button>
+            <button *ngIf="task.isCompleted" style="width: 100%" (click)="deleteTask(task.Id)" class="btn btn-danger">
+                <span class="btn-label"><i class="fa fa-trash-o"></i></span>Remove
+            </button>
         </ng-template>
     </p-column>
 
