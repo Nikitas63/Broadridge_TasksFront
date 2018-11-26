@@ -10,10 +10,6 @@ import { MenuItemEnum } from './menuItemEnum';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-
-  constructor(private _tasksService: TasksService) {
-  }
-
   @Output()
   public activeMenu: EventEmitter<MenuItemEnum> = new EventEmitter<MenuItemEnum>();
 

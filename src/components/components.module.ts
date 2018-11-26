@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import {InputTextModule, DataTableModule, ButtonModule, DialogModule, CheckboxModule, DataListModule, MenubarModule, MenuModule,
   InputTextareaModule, PanelModule, DropdownModule, FieldsetModule} from 'primeng/primeng';
@@ -11,6 +12,7 @@ import { TaskDetailsComponent } from './taskDetailsComponent/task.details.compon
 import { MainTasksComponent } from './mainTasksComponent/main.tasks.component';
 import { CreateTaskComponent } from './createTaskComponent/create.task.component';
 
+
 @NgModule({
   declarations: [
     MenuComponent,
@@ -20,7 +22,8 @@ import { CreateTaskComponent } from './createTaskComponent/create.task.component
     CreateTaskComponent
   ],
   imports: [
-      CommonModule,
+      // Angular
+      CommonModule, FormsModule,
 
       // PrimeNG
       InputTextModule, DataTableModule, ButtonModule, DialogModule, FieldsetModule,
