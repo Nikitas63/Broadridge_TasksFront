@@ -16,28 +16,28 @@ export class TasksComponent {
 
   constructor(private _tasksService: TasksService) { }
 
-  protected availablePageSizes: number[] = [10, 20, 50, 100];
+  public availablePageSizes: number[] = [10, 20, 50, 100];
 
-  protected tasks: Task[];
+  public tasks: Task[];
 
-  protected totalRecords: number;
+  public totalRecords: number;
 
-  protected rowsNumber: number;
+  public rowsNumber: number;
 
-  protected selectedTask: Task;
+  public selectedTask: Task;
 
-  protected taskFilter: TasksFilter = TasksFilter.All;
+  public taskFilter: TasksFilter = TasksFilter.All;
 
   public ngOnInit() {
     this.getTasks(1, this.availablePageSizes[0]);
   }
 
-  protected filterTasks(filter: TasksFilter) {
+  public filterTasks(filter: TasksFilter) {
     this.taskFilter = filter;
     this.getTasks(1, this.availablePageSizes[0], filter);
   }
 
-  protected loadTasksLazy(event: LazyLoadEvent) {
+  public loadTasksLazy(event: LazyLoadEvent) {
     this.rowsNumber = event.rows;
 
     var pageNumber = event.first / event.rows + 1;
@@ -45,13 +45,13 @@ export class TasksComponent {
     this.getTasks(pageNumber, event.rows);
   }
 
-  protected onTaskSelect(event: any) {
+  public onTaskSelect(event: any) {
     if (event) {
       this.selectedTask = event.data;
     }
   }
 
-  protected completeTask(id: string) {
+  public completeTask(id: string) {
     this._tasksService.completeTask(id)
       .subscribe(result => {
         if (result) {
@@ -61,7 +61,7 @@ export class TasksComponent {
       });
   }
 
-  protected deleteTask(id: string) {
+  public deleteTask(id: string) {
     this._tasksService.deleteTask(id)
       .subscribe(() => {
         this.getTasks();

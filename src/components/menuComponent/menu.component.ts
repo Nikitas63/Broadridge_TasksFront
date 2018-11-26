@@ -17,7 +17,7 @@ export class MenuComponent {
   @Output()
   public activeMenu: EventEmitter<MenuItemEnum> = new EventEmitter<MenuItemEnum>();
 
-  protected items: MenuItem[];
+  public items: MenuItem[];
 
   ngOnInit() {
       this.items = [

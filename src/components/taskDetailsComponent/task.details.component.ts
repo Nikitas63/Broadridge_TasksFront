@@ -12,15 +12,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TaskDetailsComponent {
 
   private _sub: any;
-  protected loadSingleTask: boolean;
+  
+  public loadSingleTask: boolean;
+  public loadedTask: Task;
 
   @Input()
   public set task(value: Task) {
     this.loadedTask = value;
     this.loadSingleTask = false;
   }
-
-  protected loadedTask: Task;
 
   constructor(private _tasksService: TasksService,
               private _route: ActivatedRoute,

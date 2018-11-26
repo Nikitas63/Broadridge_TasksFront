@@ -10,12 +10,12 @@ export class MainTasksComponent {
 
   protected activeMenuItem: MenuItemEnum = MenuItemEnum.Tasks;
 
-  protected get isTasksMenuActive(): boolean {
+  public get isTasksMenuActive(): boolean {
     return this.activeMenuItem === MenuItemEnum.Tasks;
   }
 
 
-  protected activateMenu(activeMenuItem: MenuItemEnum) {
+  public activateMenu(activeMenuItem: MenuItemEnum) {
     this.activeMenuItem = activeMenuItem;
   }
 }
