@@ -20,3 +20,9 @@ export enum TaskModelStatus {
     Active = 1,
     Completed = 2
 }
+
+export enum TasksFilter {
+    All = 1,
+    Active = 2,
+    Completed = 3
+}

@@ -1,3 +1,15 @@
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary" [class.active]="taskFilter == 1"> 
+          <input type="radio" name="options" id="option1" autocomplete="off" (click)="filterTasks(1)"> All
+        </label>
+        <label class="btn btn-secondary" [class.active]="taskFilter == 2">
+          <input type="radio" name="options" id="option2" autocomplete="off" (click)="filterTasks(2)"> Active
+        </label>
+        <label class="btn btn-secondary" [class.active]="taskFilter == 3">
+          <input type="radio" name="options" id="option3" autocomplete="off" (click)="filterTasks(3)"> Completed
+        </label>
+</div>
+
 <p-dataTable [value]="tasks" [lazy]="true" [rows]="rowsNumber" [paginator]="true" [rowsPerPageOptions]="availablePageSizes"
             [totalRecords]="totalRecords" (onLazyLoad)="loadTasksLazy($event)"
             selectionMode="single" (onRowSelect)="onTaskSelect($event)" dataKey="Id">

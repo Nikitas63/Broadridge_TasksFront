@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { TasksService } from '../../dataServices/services/tasksService';
-import { Task, TaskModelStatus } from '../../dataServices/clientModels/task';
+import { Task, TaskModelStatus, TasksFilter } from '../../dataServices/clientModels/task';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
@@ -26,8 +26,15 @@ export class TasksComponent {
 
   protected selectedTask: Task;
 
+  protected taskFilter: TasksFilter = TasksFilter.All;
+
   public ngOnInit() {
     this.getTasks(1, this.availablePageSizes[0]);
+  }
+
+  protected filterTasks(filter: TasksFilter) {
+    this.taskFilter = filter;
+    this.getTasks(1, this.availablePageSizes[0], filter);
   }
 
   protected loadTasksLazy(event: LazyLoadEvent) {
@@ -61,7 +68,7 @@ export class TasksComponent {
       });
   }
 
-  private getTasks(page?: number, size?: number) {
+  private getTasks(page?: number, size?: number, filter?: TasksFilter) {
     if (!page) {
       page = this._currentPage;
     } else {
@@ -74,9 +81,13 @@ export class TasksComponent {
       this._currentSize = size;
     }
 
+    if (!filter) {
+      filter = this.taskFilter;
+    }
+
     this.rowsNumber = size;
 
-    this._tasksService.getTasks(page, size)
+    this._tasksService.getTasks(page, size, filter)
       .subscribe(tasksSource => {
         this.tasks = tasksSource.tasks;
         this.totalRecords = tasksSource.paginationContext.totalRows;
