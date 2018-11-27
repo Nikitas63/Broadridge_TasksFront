@@ -11,6 +11,7 @@ import { TasksComponent } from './tasksComponent/tasks.component';
 import { TaskDetailsComponent } from './taskDetailsComponent/task.details.component';
 import { MainTasksComponent } from './mainTasksComponent/main.tasks.component';
 import { CreateTaskComponent } from './createTaskComponent/create.task.component';
+import { ServicesModule } from '../services/services.module';
 
 
 @NgModule({
@@ -29,7 +30,9 @@ import { CreateTaskComponent } from './createTaskComponent/create.task.component
       InputTextModule, DataTableModule, ButtonModule, DialogModule, FieldsetModule,
       CheckboxModule, DataListModule, MenubarModule, MenuModule, InputTextareaModule, PanelModule, DropdownModule,
 
-      DataServicesModule
+      // Application modules
+      DataServicesModule,
+      ServicesModule
   ],
   exports: [ MenuComponent, TasksComponent, TaskDetailsComponent, MainTasksComponent, CreateTaskComponent ],
   providers: []

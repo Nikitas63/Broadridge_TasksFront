@@ -1,3 +1,6 @@
+import { Observable, interval } from "rxjs";
+import { take, map } from "rxjs/operators";
+
 export class Task {
     public constructor(
         public Id?: string,
@@ -13,6 +16,8 @@ export class Task {
     public get isCompleted(): boolean {
         return this.Status == TaskModelStatus.Completed;
     }
+
+    public TimeToCompleteAsync: Observable<number>;
 }
 
 export enum TaskModelStatus {

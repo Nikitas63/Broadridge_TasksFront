@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { TasksService } from '../../dataServices/services/tasksService';
 import { Task, TaskModelStatus, TasksFilter } from '../../dataServices/clientModels/task';
 import { LazyLoadEvent } from 'primeng/api';
+import { TimeToCompleteService } from '../../services/timeToCompleteService';
 
 @Component({
   selector: 'broad-tasks-component',
@@ -14,7 +15,8 @@ export class TasksComponent {
   private _currentPage: number;
   private _currentSize: number;
 
-  constructor(private _tasksService: TasksService) { }
+  constructor(private _tasksService: TasksService,
+              private _timeToCompleteService: TimeToCompleteService) { }
 
   public availablePageSizes: number[] = [10, 20, 50, 100];
 
@@ -94,6 +96,10 @@ export class TasksComponent {
     this._tasksService.getTasks(page, size, filter)
       .subscribe(tasksSource => {
         this.tasks = tasksSource.tasks;
+        this._timeToCompleteService.initTimer(this.tasks);
+        this.tasks.forEach(t => {
+          t.TimeToCompleteAsync = this._timeToCompleteService.getTimeToCompleteAsync(t.Id);
+        })
         this.totalRecords = tasksSource.paginationContext.totalRows;
       });
   }
