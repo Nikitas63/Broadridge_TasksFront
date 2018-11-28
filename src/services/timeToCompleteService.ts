@@ -14,12 +14,12 @@ export class TimeToCompleteService {
 
     private _tasksWithTimeToCompleteHash: Map<string, number>;
 
-    private Timer: Observable<void>;
+    private _timer: Observable<void>;
 
     constructor() {
         this._startDate = new Date();
 
-        this.Timer = timer(0, 1000)
+        this._timer = timer(0, 1000)
             .pipe(map(() => 
                 {
                     this._tasksWithTimeToCompleteHash.forEach((value, key) => {
@@ -43,7 +43,7 @@ export class TimeToCompleteService {
     }
 
     public getTimeToCompleteAsync(taskId: string): Observable<number> {
-        return this.Timer.pipe(map(() => {
+        return this._timer.pipe(map(() => {
             return this._tasksWithTimeToCompleteHash.get(taskId)
         }));
     }
