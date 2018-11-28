@@ -24,7 +24,7 @@
     <p-column field="Name" header="Name"></p-column>
     <p-column field="Priority" header="Priority"></p-column>
 
-    <p-column header="Added date">
+    <p-column field="CreatedDate" header="Added date" [sortable]="true">
         <ng-template let-task="rowData" pTemplate type="body">
             {{ task.CreatedDate | date:'medium' }}
         </ng-template>

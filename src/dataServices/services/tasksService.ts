@@ -15,17 +15,20 @@ const API_URL = 'http://localhost:5055';
 export class TasksService {
     constructor(private _httpClient: HttpClient) { }
 
-    public getTasks(pageNumber?: number, pageSize?: number, filter?: TasksFilter): Observable<TasksSource> {
+    public getTasks(pageNumber?: number, pageSize?: number, filter?: TasksFilter, orderAsk?: boolean): Observable<TasksSource> {
         var page = pageNumber ? pageNumber : 1;
         var size = pageSize ? pageSize : 25;
         var filter = filter ? filter : TasksFilter.All;
+        var orderAskValue = orderAsk == null ? true: orderAsk;
+
+        var orderValue = orderAskValue ? 'OrderAsc=date' : 'OrderDesc=date';
 
         // TODO: use params like this (not worked for now)
         /*var params = new HttpParams();
         params.append('page', page.toString());
         params.append('size', size.toString());*/
 
-        return this._httpClient.get<TasksModel>(`${API_URL}/api/tasks?page=${page}&size=${size}&filter=${this.filterToString(filter)}`)
+        return this._httpClient.get<TasksModel>(`${API_URL}/api/tasks?page=${page}&size=${size}&filter=${this.filterToString(filter)}&${orderValue}`)
             .pipe(map(res => {
                 var tasks = res.data.map(t => new Task(
                     t.id,

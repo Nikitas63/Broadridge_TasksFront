@@ -26,6 +26,8 @@ export class TasksComponent {
 
   public rowsNumber: number;
 
+  public sortValue: number;
+
   public selectedTask: Task;
 
   public taskFilter: TasksFilter = TasksFilter.All;
@@ -40,6 +42,7 @@ export class TasksComponent {
   }
 
   public loadTasksLazy(event: LazyLoadEvent) {
+    this.sortValue = event.sortOrder;
     this.rowsNumber = event.rows;
 
     var pageNumber = event.first / event.rows + 1;
@@ -77,7 +80,7 @@ export class TasksComponent {
     this.getTasks();
   }
 
-  private getTasks(page?: number, size?: number, filter?: TasksFilter) {
+  private getTasks(page?: number, size?: number, filter?: TasksFilter, orderAsk?: boolean) {
     if (!page) {
       page = this._currentPage;
     } else {
@@ -94,9 +97,13 @@ export class TasksComponent {
       filter = this.taskFilter;
     }
 
+    if (orderAsk == null) {
+      orderAsk = this.sortValue > 0;
+    }
+
     this.rowsNumber = size;
 
-    this._tasksService.getTasks(page, size, filter)
+    this._tasksService.getTasks(page, size, filter, orderAsk)
       .subscribe(tasksSource => {
         this.tasks = tasksSource.tasks;
         this._timeToCompleteService.initTimer(this.tasks);
