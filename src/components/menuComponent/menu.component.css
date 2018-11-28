@@ -1,1 +1,6 @@
-
+/deep/ .menucus-first-selected ul li:nth-child(1) {
+    background: gray;
+}
+/deep/ .menucus-second-selected ul li:nth-child(2) {
+    background: gray;
+}

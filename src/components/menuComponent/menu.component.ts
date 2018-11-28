@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
-import { TasksService } from '../../dataServices/services/tasksService';
 import { MenuItemEnum } from './menuItemEnum';
 
 @Component({
@@ -10,15 +9,31 @@ import { MenuItemEnum } from './menuItemEnum';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
+  private _activeMenu: MenuItemEnum = MenuItemEnum.Tasks;
+
   @Output()
   public activeMenu: EventEmitter<MenuItemEnum> = new EventEmitter<MenuItemEnum>();
 
   public items: MenuItem[];
 
+  public get menuStyle(): string {
+    return this._activeMenu == MenuItemEnum.Tasks ? 'menucus-first-selected' : 'menucus-second-selected';
+  }
+
   ngOnInit() {
-      this.items = [
-          {label: 'Tasks list' , command: (onclick)=> {this.activeMenu.emit(MenuItemEnum.Tasks);}},
-          {label: 'Add task form', command: (onclick)=> {this.activeMenu.emit(MenuItemEnum.CreateTask);}}
-      ];
+    this.items = [
+      {
+        label: 'Tasks list', command: (onclick) => {
+          this._activeMenu = MenuItemEnum.Tasks;
+          this.activeMenu.emit(this._activeMenu)
+        }
+      },
+      {
+        label: 'Add task form', command: (onclick) => {
+          this._activeMenu = MenuItemEnum.CreateTask;
+          this.activeMenu.emit(this._activeMenu);
+        }
+      }
+    ];
   }
 }
