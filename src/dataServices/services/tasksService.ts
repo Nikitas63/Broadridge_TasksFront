@@ -12,6 +12,9 @@ import { Task, TaskModelStatus, TasksFilter } from '../clientModels/task';
 const API_URL = 'http://localhost:5055';
 
 @Injectable()
+/*
+  Tasks servive which use API to manage tasks via http requests.
+*/
 export class TasksService {
     constructor(private _httpClient: HttpClient) { }
 

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
+import { LazyLoadEvent } from 'primeng/api';
+
 import { TasksService } from '../../dataServices/services/tasksService';
 import { Task, TaskModelStatus, TasksFilter } from '../../dataServices/clientModels/task';
-import { LazyLoadEvent } from 'primeng/api';
 import { TimeToCompleteService } from '../../services/timeToCompleteService';
 
 @Component({
@@ -10,6 +11,9 @@ import { TimeToCompleteService } from '../../services/timeToCompleteService';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
+/*
+  Tasks component (contains paginated grid with tasks).
+*/
 export class TasksComponent {
 
   private _currentPage: number;

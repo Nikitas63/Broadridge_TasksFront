@@ -1,3 +1,6 @@
+/*
+  Represents API pagination context model.
+*/
 export class PaginationContext {
     public constructor(
         public page: number,

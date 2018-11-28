@@ -1,6 +1,8 @@
-import { Observable, interval } from "rxjs";
-import { take, map } from "rxjs/operators";
+import { Observable } from "rxjs";
 
+/*
+  Represents task model for UI.
+*/
 export class Task {
     public constructor(
         public Id?: string,
@@ -20,11 +22,17 @@ export class Task {
     public TimeToCompleteAsync: Observable<number>;
 }
 
+/*
+  Enum represents task model status.
+*/
 export enum TaskModelStatus {
     Active = 1,
     Completed = 2
 }
 
+/*
+  Enum represents tasks filter values.
+*/
 export enum TasksFilter {
     All = 1,
     Active = 2,

@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
+
 import { MenuItemEnum } from './menuItemEnum';
 
 @Component({
@@ -8,6 +9,9 @@ import { MenuItemEnum } from './menuItemEnum';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
+/*
+  Menu component.
+*/
 export class MenuComponent {
   private _activeMenu: MenuItemEnum = MenuItemEnum.Tasks;
 

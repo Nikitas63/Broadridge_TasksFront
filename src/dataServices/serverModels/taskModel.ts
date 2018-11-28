@@ -1,3 +1,6 @@
+/*
+  Represents API task model.
+*/
 export class TaskModel {
     public constructor(
         public id: string,

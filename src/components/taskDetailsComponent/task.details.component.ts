@@ -1,14 +1,17 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Task } from '../../dataServices/clientModels/task';
 import { TasksService } from '../../dataServices/services/tasksService';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'broad-task-details-component',
   templateUrl: './task.details.component.html',
   styleUrls: ['./task.details.component.css']
 })
+/*
+  Component with task details.
+*/
 export class TaskDetailsComponent {
 
   private _sub: any;

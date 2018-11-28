@@ -4,6 +4,9 @@ import { map, share } from "rxjs/operators";
 import { Task } from "../dataServices/clientModels/task";
 
 @Injectable()
+/*
+  Service for time to complete UI async calculation for tasks
+*/
 export class TimeToCompleteService {
 
     // Start date for calculation time to complete

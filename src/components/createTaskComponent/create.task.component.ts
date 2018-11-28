@@ -9,6 +9,9 @@ import { TasksService } from '../../dataServices/services/tasksService';
   templateUrl: './create.task.component.html',
   styleUrls: ['./create.task.component.css']
 })
+/*
+  Task creation component.
+*/
 export class CreateTaskComponent {
 
   private _saveAlreadyClicked: boolean = false;
