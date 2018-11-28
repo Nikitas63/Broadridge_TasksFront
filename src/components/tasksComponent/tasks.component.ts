@@ -99,7 +99,7 @@ export class TasksComponent {
         this._timeToCompleteService.initTimer(this.tasks);
         this.tasks.forEach(t => {
           t.TimeToCompleteAsync = this._timeToCompleteService.getTimeToCompleteAsync(t.Id);
-        })
+        });
         this.totalRecords = tasksSource.paginationContext.totalRows;
       });
   }

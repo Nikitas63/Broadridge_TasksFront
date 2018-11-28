@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable, interval } from 'rxjs';
+import { Observable, interval, timer } from 'rxjs';
 import { map, share } from "rxjs/operators";
 import { Task } from "../dataServices/clientModels/task";
 
@@ -16,7 +16,7 @@ export class TimeToCompleteService {
     constructor() {
         this._startDate = new Date();
 
-        this.Timer = interval(1000)
+        this.Timer = timer(0, 1000)
             .pipe(map(() => 
                 {
                     this._tasksWithTimeToCompleteHash.forEach((value, key) => {

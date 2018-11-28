@@ -32,7 +32,7 @@
 
     <p-column header="Time to complete">
             <ng-template let-task="rowData" pTemplate type="body">
-                {{ task.TimeToCompleteAsync | async }}
+                {{ (task.TimeToCompleteAsync | async) * 1000 | date:'H:mm:ss':'UTC' }}
             </ng-template>
     </p-column>
 
