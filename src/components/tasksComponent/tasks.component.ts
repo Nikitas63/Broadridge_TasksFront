@@ -22,7 +22,7 @@ export class TasksComponent {
   constructor(private _tasksService: TasksService,
               private _timeToCompleteService: TimeToCompleteService) { }
 
-  public availablePageSizes: number[] = [10, 20, 50, 100];
+  public availablePageSizes: number[] = [10, 20, 30];
 
   public tasks: Task[];
 
@@ -110,9 +110,8 @@ export class TasksComponent {
     this._tasksService.getTasks(page, size, filter, orderAsk)
       .subscribe(tasksSource => {
         this.tasks = tasksSource.tasks;
-        this._timeToCompleteService.initTimer(this.tasks);
         this.tasks.forEach(t => {
-          t.TimeToCompleteAsync = this._timeToCompleteService.getTimeToCompleteAsync(t.Id);
+          t.TimeToCompleteAsync = this._timeToCompleteService.getTimeToCompleteAsync(t);
         });
         this.totalRecords = tasksSource.paginationContext.totalRows;
       });
