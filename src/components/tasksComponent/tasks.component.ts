@@ -74,7 +74,7 @@ export class TasksComponent {
     this._tasksService.deleteTask(id)
       .subscribe(() => {
         this.getTasks();
-        if (this.selectedTask.Id == id) {
+        if (this.selectedTask != null && this.selectedTask.Id == id) {
           this.selectedTask = null;
         }
       });

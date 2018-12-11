@@ -12,6 +12,7 @@ import { TaskDetailsComponent } from './taskDetailsComponent/task.details.compon
 import { MainTasksComponent } from './mainTasksComponent/main.tasks.component';
 import { CreateTaskComponent } from './createTaskComponent/create.task.component';
 import { ServicesModule } from '../services/services.module';
+import { TimePipeComponent } from './pipes/time.pipe.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ServicesModule } from '../services/services.module';
     TasksComponent,
     TaskDetailsComponent,
     MainTasksComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    TimePipeComponent
   ],
   imports: [
       // Angular
@@ -34,7 +36,7 @@ import { ServicesModule } from '../services/services.module';
       DataServicesModule,
       ServicesModule
   ],
-  exports: [ MenuComponent, TasksComponent, TaskDetailsComponent, MainTasksComponent, CreateTaskComponent ],
+  exports: [ MenuComponent, TasksComponent, TaskDetailsComponent, MainTasksComponent, CreateTaskComponent, TimePipeComponent ],
   providers: []
 })
 export class ComponentsModule { }
