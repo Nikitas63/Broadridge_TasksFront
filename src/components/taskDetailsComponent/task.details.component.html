@@ -3,15 +3,15 @@
 
 <p-fieldset legend="Task details">
 
-    <span>Id: {{loadedTask?.Id}}</span>
+    <span><b>Id:</b> {{loadedTask?.Id}}</span>
     <br/>
-    <span>Name: {{loadedTask?.Name}}</span>
+    <span style="word-break: break-all;"><b>Name:</b> {{loadedTask?.Name}}</span>
     <br/>
-    <span>Description: {{loadedTask?.Description}}</span>
+    <span style="word-break: break-all;"><b>Description:</b> {{loadedTask?.Description}}</span>
     <br/>
-    <span>Status: {{loadedTask?.Status == 1 ? 'Active' : 'Inactive'}}</span>
+    <span><b>Status:</b> {{loadedTask?.Status == 1 ? 'Active' : 'Inactive'}}</span>
     <br/>
-    <span>Added: {{ loadedTask?.CreatedDate | date:'medium' }}</span>
+    <span><b>Added:</b> {{ loadedTask?.CreatedDate | date:'medium' }}</span>
     
     <br/>
     <button *ngIf="!loadSingleTask" (click)="navigate()" class="btn edit btn-primary">Navigate to task</button>

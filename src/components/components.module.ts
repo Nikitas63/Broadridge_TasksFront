@@ -11,7 +11,6 @@ import { TasksComponent } from './tasksComponent/tasks.component';
 import { TaskDetailsComponent } from './taskDetailsComponent/task.details.component';
 import { MainTasksComponent } from './mainTasksComponent/main.tasks.component';
 import { CreateTaskComponent } from './createTaskComponent/create.task.component';
-import { ServicesModule } from '../services/services.module';
 import { TimePipeComponent } from './pipes/time.pipe.component';
 
 
@@ -33,8 +32,7 @@ import { TimePipeComponent } from './pipes/time.pipe.component';
       CheckboxModule, DataListModule, MenubarModule, MenuModule, InputTextareaModule, PanelModule, DropdownModule,
 
       // Application modules
-      DataServicesModule,
-      ServicesModule
+      DataServicesModule
   ],
   exports: [ MenuComponent, TasksComponent, TaskDetailsComponent, MainTasksComponent, CreateTaskComponent, TimePipeComponent ],
   providers: []

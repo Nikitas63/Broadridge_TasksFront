@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
 import { LazyLoadEvent } from 'primeng/api';
+import { Observable, timer } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { TasksService } from '../../dataServices/services/tasksService';
 import { Task, TaskModelStatus, TasksFilter } from '../../dataServices/clientModels/task';
-import { TimeToCompleteService } from '../../services/timeToCompleteService';
 
 @Component({
   selector: 'broad-tasks-component',
@@ -18,9 +19,11 @@ export class TasksComponent {
 
   private _currentPage: number;
   private _currentSize: number;
+  private _timer: Observable<number>;
 
-  constructor(private _tasksService: TasksService,
-              private _timeToCompleteService: TimeToCompleteService) { }
+  constructor(private _tasksService: TasksService) {
+    this._timer = timer(0, 1000);
+  }
 
   public availablePageSizes: number[] = [10, 20, 30];
 
@@ -111,9 +114,20 @@ export class TasksComponent {
       .subscribe(tasksSource => {
         this.tasks = tasksSource.tasks;
         this.tasks.forEach(t => {
-          t.TimeToCompleteAsync = this._timeToCompleteService.getTimeToCompleteAsync(t);
+          t.TimeToCompleteAsync = this.getTimeToCompleteAsync(t);
         });
         this.totalRecords = tasksSource.paginationContext.totalRows;
       });
+  }
+
+  private getTimeToCompleteAsync(task: Task): Observable<number> {
+    return this._timer.pipe(map(() => {
+        var nowDate = new Date();
+        var dateDiff = nowDate.getTime() - task.CreatedDate.getTime();
+
+        var residueTimeInSeconds = task.TimeToComplete - (dateDiff / 1000);
+
+        return residueTimeInSeconds > 0 ? residueTimeInSeconds : 0;
+    }));
   }
 }

@@ -21,7 +21,11 @@
             selectionMode="single" (onRowSelect)="onTaskSelect($event)" dataKey="Id">
 
     <p-header>Tasks list</p-header>
-    <p-column field="Name" header="Name"></p-column>
+    <p-column header="Name">
+            <ng-template let-task="rowData" pTemplate type="body">
+                <span style="word-break: break-all;">{{ task.Name }}</span>
+            </ng-template>
+    </p-column>
     <p-column field="Priority" header="Priority"></p-column>
 
     <p-column field="CreatedDate" header="Added date" [sortable]="true">

@@ -4,7 +4,7 @@
             <span class="ui-inputgroup-addon">
                 Name
             </span>
-            <input type="text" [(ngModel)]="task.Name" pInputText>
+            <input type="text" [(ngModel)]="task.Name" maxLength="100" pInputText>
         </div>
     </div>
 </div>
@@ -15,7 +15,7 @@
             <span class="ui-inputgroup-addon">
                 Description
             </span>
-            <input type="text" [(ngModel)]="task.Description" pInputText>
+            <textarea pInputTextarea type="text" [(ngModel)]="task.Description" maxLength="1000"></textarea>
         </div>
     </div>
 </div>
@@ -26,7 +26,7 @@
             <span class="ui-inputgroup-addon">
                 Priority
             </span>
-            <input type="number" [(ngModel)]="task.Priority" pInputText>
+            <input type="number" [(ngModel)]="task.Priority" min="0" max="100" pInputText>
         </div>
     </div>
 </div>
@@ -50,7 +50,8 @@
         
         <ng-template [ngIf]="warningNeeded">
             <div class="alert alert-danger" style="display: inline; float: right;">
-                    <strong>Warning!</strong> Not all field are filled or filled incorrectly
+                    <strong>Warning!</strong> Not all field are filled or filled incorrectly <br/>
+                    {{warningText}}
             </div>
         </ng-template>
     </div>
