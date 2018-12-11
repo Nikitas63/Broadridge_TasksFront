@@ -34,10 +34,19 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon">
-                Time to complete
-            </span>
-            <input type="number" [(ngModel)]="task.TimeToComplete" pInputText placeholder="Is seconds">
+            <span class="ui-inputgroup-addon"><b>Time to complete</b></span> 
+
+            <span class="ui-inputgroup-addon">Days</span> 
+            <input type="number" [(ngModel)]="daysToComplete" pInputText>
+
+            <span class="ui-inputgroup-addon">Hours</span> 
+            <input type="number" [(ngModel)]="hoursToComplete" pInputText>
+
+            <span class="ui-inputgroup-addon">Minutes</span> 
+            <input type="number" [(ngModel)]="minutesToComplete" pInputText>
+
+            <span class="ui-inputgroup-addon">Seconds</span> 
+            <input type="number" [(ngModel)]="secondsToComplete" pInputText>
         </div>
     </div>
 </div>
@@ -45,7 +54,7 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div style="display: inline;">
-            <button [class.disabled]="!canSave" (click)="save()" class="btn edit btn-primary">Save</button>
+            <button [class.disabled]="this.warningText != null" (click)="save()" class="btn edit btn-primary">Save</button>
         </div>
         
         <ng-template [ngIf]="warningNeeded">
