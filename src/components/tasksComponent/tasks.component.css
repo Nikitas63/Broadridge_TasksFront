@@ -21,3 +21,15 @@ button.btn.cancel::before {
 .broad-top-buttons {
     display: inline;
 }
+
+.button-refresh {
+  float: right;
+}
+
+.task-name {
+  word-break: break-all;
+}
+
+.action-button {
+  width: 100%;
+}
